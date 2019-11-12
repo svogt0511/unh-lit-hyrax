@@ -3,7 +3,7 @@
 # The file_system provider can be a path to any directory on the server where your application is running.
 #
 file_system:
-  home: /usr/local/dev/ruby/my_app516/my_app
+  home: /usr/local/dev/ruby/my_app516
 # dropbox:
 #   client_id: YOUR_DROPBOX_APP_KEY
 #   client_secret: YOUR_DROPBOX_APP_SECRET
