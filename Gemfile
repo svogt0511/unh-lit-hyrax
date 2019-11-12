@@ -72,3 +72,5 @@ end
 gem 'riiif', '~> 2.1'
 
 gem 'mysql2'
+
+gem 'hydra-role-management'

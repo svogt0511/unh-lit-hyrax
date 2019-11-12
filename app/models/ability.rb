@@ -1,6 +1,6 @@
 class Ability
   include Hydra::Ability
-  
+
   include Hyrax::Ability
   self.ability_logic += [:everyone_can_create_curation_concerns]
 
@@ -11,6 +11,10 @@ class Ability
     # if current_user.admin?
     #   can [:destroy], ActiveFedora::Base
     # end
+
+	if current_user.admin?
+	  can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
+	end
 
     # Limits creating new objects to a specific group
     #
