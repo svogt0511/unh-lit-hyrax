@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include Hyrax::ThemedLayoutController
   with_themed_layout '1_column'
 
+  helper Zizia::Engine.helpers
 
   protect_from_forgery with: :exception
 end

@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module MyApp
   class Application < Rails::Application
+    require 'zizia'
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
