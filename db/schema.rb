@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191112184203) do
+ActiveRecord::Schema.define(version: 201901241536542) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
@@ -562,6 +562,52 @@ ActiveRecord::Schema.define(version: 20191112184203) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
+  create_table "zizia_csv_import_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "csv_import_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "depositor_id"
+    t.string "collection_id"
+    t.string "batch_id"
+    t.integer "success_count"
+    t.integer "failure_count"
+    t.string "deduplication_field"
+    t.string "update_actor_stack"
+    t.string "status"
+    t.index ["csv_import_id"], name: "index_zizia_csv_import_details_on_csv_import_id"
+  end
+
+  create_table "zizia_csv_imports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "manifest"
+    t.string "fedora_collection_id"
+    t.string "update_actor_stack"
+    t.index ["user_id"], name: "index_zizia_csv_imports_on_user_id"
+  end
+
+  create_table "zizia_pre_ingest_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "size"
+    t.text "row"
+    t.integer "row_number"
+    t.string "filename"
+    t.bigint "pre_ingest_work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pre_ingest_work_id"], name: "index_zizia_pre_ingest_files_on_pre_ingest_work_id"
+  end
+
+  create_table "zizia_pre_ingest_works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "parent_object"
+    t.bigint "csv_import_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "deduplication_key"
+    t.index ["csv_import_detail_id"], name: "index_zizia_pre_ingest_works_on_csv_import_detail_id"
+    t.index ["deduplication_key"], name: "index_zizia_pre_ingest_works_on_deduplication_key"
+  end
+
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
@@ -570,4 +616,5 @@ ActiveRecord::Schema.define(version: 20191112184203) do
   add_foreign_key "permission_template_accesses", "permission_templates"
   add_foreign_key "qa_local_authority_entries", "qa_local_authorities", column: "local_authority_id"
   add_foreign_key "uploaded_files", "users"
+  add_foreign_key "zizia_csv_imports", "users"
 end
