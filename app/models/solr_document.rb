@@ -22,7 +22,22 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
-  # Do content negotiation for AF models. 
+  # Do content negotiation for AF models.
 
   use_extension( Hydra::ContentNegotiation )
+
+  # Documented code does not work:
+  #   https://samvera.github.io/customize-metadata-show-page.html#create-a-custom-presenter-class
+  #
+  def contact_email
+    self['contact_email_tesim']
+  end
+
+  def contact_phone
+    self['contact_phone_tesim']
+  end
+
+  def spatial_coverage
+    self['spatial_coverage_tesim']
+  end
 end

@@ -14,6 +14,15 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    config.add_index_field solr_name("contact_email", :stored_searchable), label: "Contact Email"
+    config.add_show_field solr_name("contact_email", :stored_searchable)
+
+    config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
+    config.add_show_field solr_name("contact_phone", :stored_searchable)
+
+    #config.add_index_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial Coverage"
+    config.add_show_field solr_name("spatial_coverage", :stored_searchable)
+
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
