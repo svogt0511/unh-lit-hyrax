@@ -39,3 +39,5 @@ terms:
     term: Video
   - id: Other
     term: Other
+  - id: StillImage
+    term: StillImage
