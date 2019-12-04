@@ -7,7 +7,7 @@ which rvm
 rvm gemset list
 rvm gemset use my_app
 rvm gemset list
-cd /usr/local/dev/ruby/my_app
+cd /usr/local/dev/ruby/my_app516
 pwd
 echo "--------------------------STARTING MY_APP--------------------"
 rvm use 2.6.3@my_app516
