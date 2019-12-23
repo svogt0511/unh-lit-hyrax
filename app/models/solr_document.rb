@@ -40,4 +40,12 @@ class SolrDocument
   def spatial_coverage
     self['spatial_coverage_tesim']
   end
+
+  def extent
+    self['extent_tesim']
+  end
+
+  def bibliographic_citation
+    self['bibliographic_citation_tesim']
+  end
 end

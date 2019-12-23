@@ -20,13 +20,18 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
     config.add_show_field solr_name("contact_phone", :stored_searchable)
 
-    #config.add_index_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial Coverage"
-    config.add_show_field solr_name("spatial_coverage", :stored_searchable)
+    config.add_index_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
+    config.add_show_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
+
+    config.add_index_field solr_name("extent", :stored_searchable), label: "Extent"
+    config.add_show_field solr_name("extent", :stored_searchable)
+
+    config.add_index_field solr_name("bibliographic_citation", :stored_searchable), label: "Bibliographic Citation"
+    config.add_show_field solr_name("bibliograhic_citation", :stored_searchable)
 
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
-
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)

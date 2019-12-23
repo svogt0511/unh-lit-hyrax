@@ -24,13 +24,21 @@ class MyMapper < Zizia::HashMapper
       #resource_type: 'resource type',
       description: 'dcterms:description',
       #description: 'abstract or summary',
-      rights_statement: 'rights statement',
-      date_created: 'date created',
+      rights_statement: 'dcterms:rights',
+      date_created: 'dcterms:date',
       based_near: 'location',
       related_url: 'related url',
       title: 'dcterms:title',
       identifier: 'dcterms:identifier',
-      creator: 'dcterms:creator'
+      creator: 'dcterms:creator',
+      subject: 'dcterms:subject',
+      publisher: 'dcterms:publisher',
+      source: 'dcterms:source',
+      spatial_coverage: 'dcterms:spatial',
+      extent: 'dcterms:extent',
+      license: 'dcterms:license',
+      contributor: 'dcterms:contributor',
+      bibliographic_citation: 'dcterms:bibiliographic_citation'
     }.freeze
 
     ##
@@ -159,7 +167,7 @@ class MyMapper < Zizia::HashMapper
          :rights_statement, :publisher, :date_created,
          :subject, :language, :identifier,
          :based_near, :related_url,
-         :bibliographic_citation, :source]
+         :bibliographic_citation, :source, :spatial_coverage, :extent]
       end
   #end
 
