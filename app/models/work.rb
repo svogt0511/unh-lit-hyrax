@@ -12,7 +12,7 @@ class Work < ActiveFedora::Base
   #  index.as :stored_searchable
   #end
 
-  property :spatial_coverage, predicate: ::RDF::Vocab::DC.TGN, multiple: true do |index|
+  property :spatial_coverage, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
     index.as :stored_searchable
   end
 
