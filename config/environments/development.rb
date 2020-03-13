@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+#Rails.logger = Logger.new(STDOUT)
+#config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
+#Rails.logger.info "SKV2000 - Check out this info!"
+
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -52,10 +57,15 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_mailer.default_url_options = { :host => "digitalcollections-test.unh.edu:3000" }
-
   config.action_mailer.default_options = { from: "noreply@unh.edu" }
 
   config.log_level = :debug
 
+  # Causes too many redirects
+  #config.force_ssl = true
+  config.force_ssl = false
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  config.action_cable.url = "ws://localhost:3000/cable"
+
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "localhost"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http") }
 end
