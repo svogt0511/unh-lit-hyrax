@@ -69,9 +69,6 @@ group :development, :test do
 end
 
 gem 'riiif', '~> 2.1'
-
 gem 'mysql2'
-
 gem 'hydra-role-management'
-
 gem 'zizia', '~> 6.0.0'
