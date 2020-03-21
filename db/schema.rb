@@ -539,9 +539,16 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.string "zotero_userid"
     t.string "preferred_locale"
     t.boolean "approved", default: false, null: false
+    t.string "username"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["approved"], name: "index_users_on_approved"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "version_committers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

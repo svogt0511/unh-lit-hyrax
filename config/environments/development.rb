@@ -67,5 +67,9 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
   config.action_cable.url = "ws://localhost:3000/cable"
 
-  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "localhost"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http") }
+  # config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "localhost"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http") }
+
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "digitalcollections-test.unh.edu"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "https") }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
 end
