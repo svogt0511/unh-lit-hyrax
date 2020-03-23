@@ -8,6 +8,16 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
+  # Authorize user for rails_admi/site_admin pages.
+  config.authorize_with do
+	  if current_user.nil?
+		redirect_to main_app.new_account_session_path, flash: {error: 'Please Login to Continue.'}
+	  elsif !current_user.is_site_admin?
+		redirect_to main_app.root_path, flash: {error: 'You do not have access to site admin.'}
+	  end
+    #redirect_to main_app.root_path unless current_user.is_site_admin?
+  end
+
   ## == CancanCan ==
   # config.authorize_with :cancancan
 
