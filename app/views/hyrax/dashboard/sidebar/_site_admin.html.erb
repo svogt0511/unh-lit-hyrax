@@ -1,0 +1,6 @@
+  <% if !current_user.nil? && current_user.is_site_admin? %>
+    <li class="h5"><%= t('Site Admin') %></li>
+    <%= menu.nav_link(rails_admin.dashboard_path) do %>
+      <span class="fa fa-cog" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('Dashboard') %></span>
+    <% end %>
+  <% end %>

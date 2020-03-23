@@ -14,7 +14,6 @@ class Ability
 
 	if current_user.admin?
 	  can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
-      can :access, :rails_admin       # only allow admin users to access Rails Admin
       can :dashboard
       can :manage, :all
 	end
