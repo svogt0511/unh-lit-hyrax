@@ -9,14 +9,14 @@ class User < ApplicationRecord
   include Hyrax::User
   include Hyrax::UserUsageStats
 
-  # Add rails_admin role.
-  def site_admin?
-	roles.where(name: 'site_admin').exists?
+  # Authorization: add rails_admin role.
+  def is_site_admin?
+	roles.where(name: 'site_admin').exists?  || roles.where(name: 'site_admin').exists?
   end
 
-  # Override admin role from Hydra::RoleManagement::UserRoles
-  def admin?
-	roles.where(name: 'admin').exists? || roles.where(name: 'site_admin').exists?
+  # Authorization: override admin role from Hydra::RoleManagement::UserRoles
+  def is_admin?
+	roles.where(name: 'admin').exists?
   end
 
   if Blacklight::Utils.needs_attr_accessible?
