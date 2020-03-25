@@ -1,14 +1,16 @@
 class User < ApplicationRecord
+  # Allows us to check for changes to the model.
+  include ActiveModel::Dirty
   # Connects this user object to Hydra behaviors.
   include Hydra::User
   # Connects this user object to Role-management behaviors.
   include Hydra::RoleManagement::UserRoles
 
-
   # Connects this user object to Hyrax behaviors.
   include Hyrax::User
   include Hyrax::UserUsageStats
 
+  ### HYDRA ROLE MANAGEMENT - AUTHORIZATION
   # Authorization: add rails_admin role.
   def is_site_admin?
 	roles.where(name: 'site_admin').exists?  || roles.where(name: 'site_admin').exists?
@@ -37,6 +39,7 @@ class User < ApplicationRecord
     email
   end
 
+  ### DEVISE - AUTHENTICATION
   def active_for_authentication?
     super && approved?
   end
@@ -55,9 +58,23 @@ class User < ApplicationRecord
     recoverable
   end
 
+  ### DEVISE - NEW USER EMAIL APPROVALS
   after_create :send_admin_mail
   def send_admin_mail
     AdminMailer.new_user_waiting_for_approval(email).deliver
+  end
+
+  before_save :check_admin_mail_approved
+  def check_admin_mail_approved
+    if approved_changed?
+        if self.approved_changed?(to: true)
+          AdminMailer.new_user_approved(self.email).deliver
+        end
+    end
+  end
+
+  def send_admin_mail_approved
+    AdminMailer.new_user_approved(self.email).deliver
   end
 
   # Implement username as login instead of email
