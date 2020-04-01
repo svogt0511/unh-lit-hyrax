@@ -1,0 +1,13 @@
+  <% if can?(:manage, Zizia::CsvImport) &&
+        can?(:manage, Zizia::CsvImportDetail)  %>
+    <li class="h5">Bulk Import</li>
+    <%= menu.nav_link(zizia.new_csv_import_path) do %>
+      <span class="fa fa-cog" aria-hidden="true"></span> <span class="sidebar-action-text">Import CSV</span>
+    <% end %>
+    <%= menu.nav_link(zizia.importer_documentation_guide_path) do %>
+      <span class="fa fa-cog" aria-hidden="true"></span> <span class="sidebar-action-text">Help</span>
+    <% end %>
+    <%= menu.nav_link(zizia.importer_documentation_csv_path) do %>
+      <span class="fa fa-cog" aria-hidden="true"></span> <span class="sidebar-action-text">CSV Template</span>
+    <% end %>
+  <% end %>
