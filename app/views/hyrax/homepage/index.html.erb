@@ -1,11 +1,7 @@
 <!-- <% provide :page_title, application_name %> -->
 <% provide :page_title, " | #{institution_name_full}" %>
 <% if @presenter.display_share_button? %>
-<div class="home-share-work text-center xyzzy">
-<div class="text-center" style="margin-bottom:20px;">
-This site is under construction today.  It may be down at some times during the day.  Just keep trying!<br>
-(This announcement block is a customization of the home page!)
-</div>
+<div class="home-share-work text-center">
   <% if signed_in? %>
     <% if @presenter.create_many_work_types? %>
       <%= link_to '#',
