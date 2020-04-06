@@ -1,5 +1,4 @@
-<!-- <% provide :page_title, application_name %> -->
-<% provide :page_title, " | #{institution_name_full}" %>
+<% provide :page_title, t('hyrax.institution_name_app') %>
 <% if @presenter.display_share_button? %>
 <div class="home-share-work text-center">
   <% if signed_in? %>
