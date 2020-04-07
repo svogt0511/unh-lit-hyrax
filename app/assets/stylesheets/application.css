@@ -15,7 +15,3 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  */
-
-#logo.navbar-brand {
-  height: auto;
-}

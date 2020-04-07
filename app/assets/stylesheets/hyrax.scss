@@ -15,3 +15,16 @@
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
 @import 'hyrax/login_signup';
+
+
+
+#logo.navbar-brand {
+  height: auto;
+}
+
+
+@media (min-width: 768px) {
+	body.dashboard {
+	  padding-top: 80px;
+	}
+}
