@@ -15,7 +15,7 @@ signed in %>
 <!-- Google Scholar metadata -->
 <%= yield :gscholar_meta %>
 
-<% if current_page?(root_path) %>
+<% if current_page?(hyrax.root_path) %>
 <title><%= content_for?(:page_title) ? ( [ yield(:page_title) ] + [ t('hyrax.institution_name_full') ]).join(' | ') : ( [ default_page_title ] + [ t('hyrax.institution_name_full') ] ).join(' | ') %></title>
 <% else %>
 <title><%= content_for?(:page_title) ? ( [ yield(:page_title) ] + [ t('hyrax.institution_name_app') ]).join(' | ') : ( [ default_page_title ] + [ t('hyrax.institution_name_app') ] ).join(' | ') %></title>
