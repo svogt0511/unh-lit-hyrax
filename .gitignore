@@ -83,3 +83,4 @@ fcrepo4-data
 log/*
 
 *.orig
+config/local_env.yml
