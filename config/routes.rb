@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'greetings/hello(.:format)'
+  post 'greetings/hello_csv(.:format)'
   mount RailsAdmin::Engine => '/site_admin', as: 'rails_admin'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
         mount BrowseEverything::Engine => '/browse'

@@ -1,0 +1,26 @@
+// Place all the styles related to the Greetings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+//////////////////////
+// CUSTOMIZED STYLES
+
+.greetings-error {
+    margin-top: 5px;
+    font-weight: bold;
+    color: red;
+    text-align: left;
+}
+
+.greetings-file {
+    margin-top: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.greetings-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+}
