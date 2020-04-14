@@ -90,6 +90,22 @@ function getCollectionCsv(data) {
 	        csv_html = '<div id="csv-error" class="greetings-error">CSV file not found.</div>';
 	    }
 
+		var csv_content = $('#csv-content');
+		// if (csv_content[0]) { console.log ("LOADING FILE FROM PATH: " + IMPORT_PATH + '/' + data )}
+		if (csv_content[0]) { console.log ("LOADING FILE FROM PATH: " + 'collections/' + data + '/' + data + ".csv" ) }
+
+/*
+		// Loading the file from https://site/public.  There is a link to collections in public.
+	    $( "#csv-content" ).load( '/collections/' + data + '/' + data + ".csv",function(responseText, statusText, xhr)
+			{
+				if(statusText == "success")
+					alert("Successfully loaded the content!");
+					console.log("responseText");
+					console.log(responseText);
+				if(statusText == "error")
+					alert("An error occurred: " + xhr.status + " - " + xhr.statusText);
+			});
+*/
 		var csv_elmts = $('#csv-elemt');
 		var csv_errs = $('#csv-error');
 		if (csv_elmts[0]) {
@@ -107,6 +123,7 @@ function getCollectionCsv(data) {
 	  console.log(error);
 	}
   });
+
 }
 
 
