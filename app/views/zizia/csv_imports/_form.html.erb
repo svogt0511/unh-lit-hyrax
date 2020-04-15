@@ -1,5 +1,5 @@
 <%= form_with(model: csv_import, local: true, html: { multipart: true, id: "zizia-csv-imports-new" }, url: preview_csv_import_path) do |form| %>
-  <script>var IMPORT_PATH = "<%= ENV['IMPORT_PATH'] %>"</script>
+  <script>var IMPORT_PATH = "<%= Rails.root.join('public', 'collections') %>"</script>
 
   <div id="results"></div>
 
@@ -21,35 +21,31 @@
           <div class="well well-sm">
             <h4><span class="bullet" style="margin-bottom: 5px;">B</span></h4>
             <div class="step">
-              <b>Choose from available collection data</b> from the  specified source on the server host.
+              <b>Choose collection data available for import.</b>
             </div>
-            <div class="text-center" id="collections-list">
-            </div>
+            <div class="text-center" id="collections-list"></div>
+            <div class="collections-desc">This data is hosted on externally (in the LITPGFS FedoraStorage shared folder).  You should mount this shared folder on your computer for direct access to this data. <%= link_to "Instructions are here", "/importer_documentation/shared_folder" %>.</div>
+            <div class="collections-desc">New external data sources can be added upon request.</div>
           </div>
+          <% if collections? %>
             <div class="well well-sm">
               <h4><span class="bullet">C</span></h4>
               <div class="step">
-                <b>Upload your files</b> over SFTP, using a tool like <a href="https://filezilla-project.org">FileZilla</a> to transfer files.
-                <br><br>DO THIS ONLY IF: your collections are not already available on the server at the source specified in step&nbsp;B.
-              </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-          <h3><span class="bullet">2</span> Choose Your Settings</h3>
-          <% if collections? %>
-            <div class="well well-sm">
-              <h4><span class="bullet">A</span></h4>
-              <div class="step">
-                <b>Upload a CSV</b> that lists the metadata and files you want to import.
+                <b>Upload a CSV</b> that lists the collection metadata and files you want to import.
               </div>
                 <div class="text-center">
                   <%= render "file_upload", form: form  %>
                 </div>
             </div>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <h3><span class="bullet">2a</span> Choose Your Settings</h3>
+          <% if collections? %>
             <div class="well well-sm">
-              <h4><span class="bullet">B</span></h4>
+              <h4><span class="bullet">A</span></h4>
               <div class="step">
-                <b>Choose a collection</b> that you'd like your new works to be associated with.
+                <b>Choose a collection</b> where you'd like your new works to be imported.
               </div>
                 <div class="text-center">
                   <%= render "collection_selection", form: form %>
@@ -57,7 +53,7 @@
             </div>
             <div class="well well-sm">
             <!-- <div id="csv-content" style="display:none;"></div> -->
-              <h4><span class="bullet">C</span></h4>
+              <h4><span class="bullet">B</span></h4>
               <div class="step">
                 <b>Select update behavior.</b> New works will always be added to the repository. Existing works can be overwritten, updated,
                 or ignored.
@@ -66,11 +62,11 @@
                   <%= render "update_actor_stack", form: form %>
                 </div>
             </div>
+            <h3><span class="bullet">2b</span> Preview/Start Your Import</h3>
             <div class="well well-sm">
               <h4><span class="bullet">D</span></h4>
               <div class="step">
                 <b>Preview your import</b> and start the import if everything looks good.
-                or overwritten
               </div>
                 <div class="text-center">
                   <%= render "actions", form: form %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'greetings/hello(.:format)'
+  post 'greetings/hello(.:format)'
   post 'greetings/hello_csv(.:format)'
   mount RailsAdmin::Engine => '/site_admin', as: 'rails_admin'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   mount Zizia::Engine => '/'
   mount Blacklight::Engine => '/'
 
-    concern :searchable, Blacklight::Routes::Searchable.new
+  concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
+
+  get 'importer_documentation/shared_folder', to: 'zizia/importer_documentation#shared_folder'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
