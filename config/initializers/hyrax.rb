@@ -107,6 +107,7 @@ Hyrax.config do |config|
 
   # Stream realtime notifications to users in the browser
   # config.realtime_notifications = true
+  config.realtime_notifications = true
 
   # Location autocomplete uses geonames to search for named regions
   # Username for connecting to geonames
