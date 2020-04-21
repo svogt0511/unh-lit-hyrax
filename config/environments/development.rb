@@ -61,11 +61,15 @@ Rails.application.configure do
 
   config.log_level = :debug
 
-  # Causes too many redirects
+  # Force_ssl causes 'too many redirects' - infinite redirect loop.
   #config.force_ssl = true
   config.force_ssl = false
+
+  # Action_cable is for notifications.
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
-  config.action_cable.url = "ws://localhost:3000/cable"
+  # config.action_cable.url = [/ws:\/\/*/, /wss:\/\/*/]
+  config.action_cable.url = "ws://localhost:3000/notifications"
+  # config.action_cable.disable_request_forgery_protection = true
 
   # config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "localhost"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http") }
 
