@@ -155,7 +155,7 @@ CREATE TABLE `collection_type_participants` (
   PRIMARY KEY (`id`),
   KEY `hyrax_collection_type_id` (`hyrax_collection_type_id`),
   CONSTRAINT `fk_rails_2da4e10612` FOREIGN KEY (`hyrax_collection_type_id`) REFERENCES `hyrax_collection_types` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,6 +164,7 @@ CREATE TABLE `collection_type_participants` (
 
 LOCK TABLES `collection_type_participants` WRITE;
 /*!40000 ALTER TABLE `collection_type_participants` DISABLE KEYS */;
+INSERT INTO `collection_type_participants` VALUES (1,1,'group','admin','manage','2020-04-22 22:18:01','2020-04-22 22:18:01'),(2,1,'group','admin','create','2020-04-22 22:18:01','2020-04-22 22:18:01');
 /*!40000 ALTER TABLE `collection_type_participants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,7 +349,7 @@ CREATE TABLE `hyrax_collection_types` (
   `badge_color` varchar(255) DEFAULT '#663333',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_hyrax_collection_types_on_machine_id` (`machine_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -357,6 +358,7 @@ CREATE TABLE `hyrax_collection_types` (
 
 LOCK TABLES `hyrax_collection_types` WRITE;
 /*!40000 ALTER TABLE `hyrax_collection_types` DISABLE KEYS */;
+INSERT INTO `hyrax_collection_types` VALUES (1,'Admin Set','An aggregation of works that is intended to help with administrative control. Admin Sets provide a way of defining behaviors and policies around a set of works.','admin_set',0,0,1,0,1,1,1,1,0,'#405060');
 /*!40000 ALTER TABLE `hyrax_collection_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -882,7 +884,7 @@ CREATE TABLE `searches` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_searches_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -891,7 +893,7 @@ CREATE TABLE `searches` (
 
 LOCK TABLES `searches` WRITE;
 /*!40000 ALTER TABLE `searches` DISABLE KEYS */;
-INSERT INTO `searches` VALUES (1,_binary '--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nlocale: en\ncontroller: hyrax/my/works\naction: index\n',NULL,NULL,'2020-04-22 20:57:59','2020-04-22 20:57:59'),(2,_binary '--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nlocale: en\ncontroller: hyrax/my/collections\naction: index\n',NULL,NULL,'2020-04-22 20:59:02','2020-04-22 20:59:02');
+INSERT INTO `searches` VALUES (1,_binary '--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nlocale: en\ncontroller: hyrax/my/works\naction: index\n',NULL,NULL,'2020-04-22 20:57:59','2020-04-22 20:57:59'),(2,_binary '--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nlocale: en\ncontroller: hyrax/my/collections\naction: index\n',NULL,NULL,'2020-04-22 20:59:02','2020-04-22 20:59:02'),(3,_binary '--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nlocale: en\ncontroller: hyrax/dashboard/collections\naction: index\n',NULL,NULL,'2020-04-22 22:18:01','2020-04-22 22:18:01');
 /*!40000 ALTER TABLE `searches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1766,4 +1768,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-22 17:34:10
+-- Dump completed on 2020-04-22 19:53:09
