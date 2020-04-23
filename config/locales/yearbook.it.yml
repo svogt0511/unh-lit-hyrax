@@ -1,0 +1,8 @@
+it:
+  hyrax:
+    icons:
+      yearbook:     'fa fa-file-text-o'
+    select_type:
+      yearbook:
+        description:        "Yearbook opere"
+        name:               "Yearbook"

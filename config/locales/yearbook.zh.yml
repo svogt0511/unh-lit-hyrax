@@ -1,0 +1,10 @@
+zh:
+  hyrax:
+    icons:
+      yearbook:     'fa fa-file-text-o'
+    select_type:
+      yearbook:
+        # TODO: translate `human_name` into Chinese
+        description:        "Yearbook 作品"
+        name:               "Yearbook"
+        # TODO: translate `human_name` into Chinese

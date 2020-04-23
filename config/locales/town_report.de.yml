@@ -1,0 +1,8 @@
+de:
+  hyrax:
+    icons:
+      town_report:     'fa fa-file-text-o'
+    select_type:
+      town_report:
+        description:        "Town report Werke"
+        name:               "Town Report"

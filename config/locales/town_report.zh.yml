@@ -1,0 +1,10 @@
+zh:
+  hyrax:
+    icons:
+      town_report:     'fa fa-file-text-o'
+    select_type:
+      town_report:
+        # TODO: translate `human_name` into Chinese
+        description:        "Town report 作品"
+        name:               "Town Report"
+        # TODO: translate `human_name` into Chinese

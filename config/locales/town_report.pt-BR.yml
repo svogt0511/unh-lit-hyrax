@@ -1,0 +1,8 @@
+pt-BR:
+  hyrax:
+    icons:
+      town_report:     'fa fa-file-text-o'
+    select_type:
+      town_report:
+        description:        "Town report obras"
+        name:               "Town Report"
