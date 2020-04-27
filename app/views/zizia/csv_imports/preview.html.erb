@@ -15,19 +15,9 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <label> Import From: </label>
+            <label> IMPORT_PATH: </label>
             <%= (File.directory?(ENV['IMPORT_PATH']) ? ENV['IMPORT_PATH'] : 'NO IMPORT DIRECTORY') %>
           </div>
-		  <% unless !File.directory?(ENV['IMPORT_PATH']) %>
-		    <div class="col-md-4">
-			  <select id="selectDir" class="selectpicker" title="Choose a file import directory...">
-				    <option selected value="0" disabled>Choose import folder</option>
-				    <% Dir.entries(ENV['IMPORT_PATH']).select {|entry| File.directory? File.join(ENV['IMPORT_PATH'], entry) and !(entry == '.' || entry == '..') }.each do |file| %>
-					  <option> <%= file %> </option>
-				    <% end %>
-			  </select>
-		    </div>
-		  <% end %>
         </div>
       <% end %>
 
