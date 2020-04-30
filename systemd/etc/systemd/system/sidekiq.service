@@ -1,0 +1,26 @@
+[Unit]
+Description=SIDEKIQ
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/hyrax
+ExecStart=/var/www/hyrax/systemd/sidekiq.sh
+
+User=hyrax
+Group=hyrax
+UMask=0002
+
+# if we crash, restart
+RestartSec=10
+Restart=on-failure
+
+# output goes to /var/log/syslog
+StandardOutput=syslog
+StandardError=syslog
+
+# This will default to "bundler" if we don't specify it
+SyslogIdentifier=sidekiq
+
+[Install]
+WantedBy=multi-user.target
