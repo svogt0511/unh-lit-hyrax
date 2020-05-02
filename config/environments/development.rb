@@ -47,8 +47,17 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.assets.digest = false
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+
+#config.assets.configure do |env|
+#  env.cache = ActiveSupport::Cache.lookup_store(:null_store)
+#end
+
+  # config.assets.prefix = "/dev-assets"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
@@ -76,4 +85,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "digitalcollections-test.unh.edu"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "https") }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+
 end
