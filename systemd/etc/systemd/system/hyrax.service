@@ -1,0 +1,20 @@
+[Unit]
+Description=HYRAX
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/hyrax
+ExecStart=/var/www/hyrax/systemd/hyrax.sh
+# Environment=RAILS_ENV=production
+
+# TimeoutStartSec=0
+User=hyrax
+Group=hyrax
+UMask=0002
+Restart=on-failure
+RestartSec=10
+StandardError=syslog
+
+[Install]
+WantedBy=default.target

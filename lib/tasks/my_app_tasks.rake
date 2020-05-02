@@ -1,4 +1,4 @@
-namespace :my_app_tasks do
+namespace :hyrax_tasks do
   desc "TODO - Start of dump_fcrepo_files.  Run in app root.  Assumes existence of APP_ROOT/tmp/files."
   task dump_fcrepo_files: :environment do
 
