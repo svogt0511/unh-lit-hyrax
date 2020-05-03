@@ -1,0 +1,5 @@
+## This file contains ENVIRONMENT variables that will be defined for your application.  As 'local_env.yml' this will not be committed to the repository (it will be 
+## ignored on commit).  You can use it as follows a convenient place to put keep environment variables for testing, etc.  This is not necessarily a good place
+## for passwords as they should be encoded in credentials.yml.enc.
+IMPORT_PATH_TITLE: "FedoraStorage on Litpgfs"
+IMPORT_PATH_DESC: "The environment variable IMPORT_PATH points to a shared folder (FedoraStorage on Litpgfs). You may mount this shared folder on your computer if you want direct access to the data, but it is not required."
