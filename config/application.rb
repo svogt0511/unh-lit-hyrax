@@ -24,6 +24,7 @@ module MyApp
 	  end if File.exists?(env_file)
     end
 
+    # Overrides for engine classes etc.
     config.to_prepare do
       Dir.glob(Rails.root + "app/overrides/**/*.rb").each do |c|
         require_dependency(c)
