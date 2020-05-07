@@ -62,3 +62,10 @@ HYRAX_WORKING_PATH: "/mnt/LocalDataStores/hyrax/tmp/uploads"
 HYRAX_DERIVATIVES_PATH: "/mnt/LocalDataStores/hyrax/tmp/derivatives"
 HYRAX_UPLOAD_PATH: "/mnt/LocalDataStores/hyrax/tmp/uploads"
 HYRAX_CACHE_PATH: "/mnt/LocalDataStores/hyrax/tmp/uploads/cache"
+
+## MOVE IMAGE_MAGIC TMP DIR FROM /TMP TO...  /TMP WAS TOO SMALL.
+## I also put these in systemd/sidekiq.sh because I think they need to be set this
+## is used in the createderivatives job whic is run by sidekiq.
+MAGICK_TEMPORARY_PATH: "/mnt/LocalDataStores/hyrax/tmp_magick"
+MAGICK_TMPDIR: "/mnt/LocalDataStores/hyrax/tmp_magick"
+MAGICK_TEMPDIR: "/mnt/LocalDataStores/hyrax/tmp_magick"
