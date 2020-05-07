@@ -1,18 +1,14 @@
+default: &default
+  user: <%= ENV['FCREPO_USERNAME'] %>
+  password: <%= ENV['FCREPO_PASSWORD'] %>
+  url: http://<%= ENV['FCREPO_HOST'] %>:<%= ENV['FCREPO_PORT'] || 8984 %><%= ENV['FCREPO_PATH']%>
+  base_path: <%= ENV['FCREPO_BASE_PATH'] %>
+
 development:
-  user: fedoraAdmin
-  password: fedoraAdmin
-  url: http://127.0.0.1:8080/fcrepo/rest
-  #url: http://127.0.0.1:<%= ENV['FCREPO_DEVELOPMENT_PORT'] || 8984 %>/rest
-  base_path: /hyrax-development
+  <<: *default
+
 test:
-  user: fedoraAdmin
-  password: fedoraAdmin
-  url: http://127.0.0.1:8080/fcrepo/rest
-  #url: http://127.0.0.1:<%= ENV['FCREPO_DEVELOPMENT_PORT'] || 8984 %>/rest
-  base_path: /hyrax-development
+  <<: *default
+
 production:
-  user: fedoraAdmin
-  password: fedoraAdmin
-  url: http://127.0.0.1:8080/fcrepo/rest
-  #url: http://127.0.0.1:<%= ENV['FCREPO_DEVELOPMENT_PORT'] || 8984 %>/rest
-  base_path: /hyrax-development
+  <<: *default

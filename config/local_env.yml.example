@@ -1,0 +1,64 @@
+######### USAGE
+#
+# EXAMPLE:
+#
+# <%= ENV['FCREPO_DEVELOPMENT_PORT'] || 8984 %>
+#
+
+RAILS_ENV: "development"
+
+APPLICATION_HOST: "digitalcollections-test.unh.edu"
+APPLICATION_HOST_PROTOCOL: "https"
+
+# The path to the collection data, probably in a shared folder.
+IMPORT_PATH: "/mnt/litpgfs/FedoraStorage/collections"
+# IMPORT_PATH: "/home/skv2000/FedoraStorage/collections"
+IMPORT_PATH_TITLE: "FedoraStorage on Litpgfs"
+IMPORT_PATH_DESC: "The environment variable IMPORT_PATH points to a shared folder (FedoraStorage on Litpgfs). You may mount this shared folder on your computer if you want direct access to the data, but it is not required."
+# IMPORT_PATH_DEFAULT: "/opt/data"
+
+########## OTHER VARIABLES:
+#
+# RAILS_SERVE_STATIC_FILES
+# RAILS_LOG_TO_STDOUT
+
+## IN BLACKLIGHT.YML
+# SOLR_URL - defaults to "http://your.production.server:8080/bl_solr/core0"
+
+## IN DATABASE.YML
+# RAILS_MAX_THREADS: 5
+DB_USERNAME: "root"
+DB_PASSWORD: "ACcOmmODAtION55!"
+DB_HOST: "localhost"
+DB_PORT: "3306"
+DB_NAME: "hyrax"
+DB_TIMEOUT: "5000"
+
+DB_USERNAME_TEST: ""
+DB_PASSWORD_TEST: ""
+DB_HOST_TEST: "localhost"
+DB_PORT_TEST: "3306"
+DB_NAME_TEST: ""
+
+##  IN FEDORA.YML - change base_path for
+FCREPO_USERNAME: "fedoraAdmin"
+FCREPO_PASSWORD: "fedoraAdmin"
+FCREPO_HOST: "localhost"
+FCREPO_PORT: "8080"
+FCREPO_PATH: "/fcrepo/rest"
+FCREPO_BASE_PATH: "/hyrax-development"
+
+## IN PUMA.yml
+# PORT: "3000"
+# RAILS_ENV: development
+# WEB_CONCURRENCY: "2"
+
+## IN REDIS.YML
+REDIS_HOST: "localhost"
+REDIS_PORT: "6379"
+
+## IN config/initializers/hyrax.rb - move stuff out of {app_root}/tmp to a location that has more storage capacity available.
+HYRAX_WORKING_PATH: "/mnt/LocalDataStores/hyrax/tmp/uploads"
+HYRAX_DERIVATIVES_PATH: "/mnt/LocalDataStores/hyrax/tmp/derivatives"
+HYRAX_UPLOAD_PATH: "/mnt/LocalDataStores/hyrax/tmp/uploads"
+HYRAX_CACHE_PATH: "/mnt/LocalDataStores/hyrax/tmp/uploads/cache"

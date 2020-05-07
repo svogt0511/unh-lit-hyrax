@@ -3,6 +3,6 @@ development:
   #url: http://localhost:8080/solr/hydra-development
   url: http://localhost:8983/solr/hydra-development
 test:
-  url: http://localhost:8080/solr/hydra-test
+  url: http://localhost:8983/solr/hydra-development
 production:
   url: <%= ENV['SOLR_URL'] || "http://your.production.server:8080/bl_solr/core0" %>
