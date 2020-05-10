@@ -21,6 +21,7 @@
 //= require blacklight/blacklight
 
 //= require zizia/application
+//= require bulkrax/application
 //= require_tree .
 //= require hyrax
 
