@@ -9,7 +9,7 @@ Bulkrax.setup do |config|
   # Field to use during import to identify if the Work or Collection already exists.
   # Default is 'source'.
   # config.system_identifier_field = 'source'
-  config.system_identifier_field = 'source'
+  config.system_identifier_field = 'identifier'
 
   # WorkType to use as the default if none is specified in the import
   # Default is the first returned by Hyrax.config.curation_concerns
@@ -36,7 +36,8 @@ Bulkrax.setup do |config|
   # The default value for CSV is 'source_identifier'
   # config.source_identifier_field_mapping = { }
   config.source_identifier_field_mapping = {
-	'Bulkrax::CsvEntry'  => 'source_identifier'
+	# 'Bulkrax::CsvEntry'  => 'source_identifier'
+	'Bulkrax::CsvEntry'  => 'identifier'
   }
 
   # Field_mapping for establishing a parent-child relationship (FROM parent TO child)
@@ -51,12 +52,23 @@ Bulkrax.setup do |config|
   # By default no parent-child relationships are added
   # config.parent_child_field_mapping = { }
 
+  # Use a column called 'children'
+  #config.parent_child_field_mapping = {
+  #  'Bulkrax::CsvEntry' => 'children'
+  #}
+
   # Field_mapping for establishing a collection relationship (FROM work TO collection)
   # This value IS NOT used for OAI, so setting the OAI parser here will have no effect
   # The mapping is supplied per Entry, provide the full class name as a string, eg. 'Bulkrax::CsvEntry'
   # The default value for CSV is collection
   # Add/replace parsers, for example:
   # config.collection_field_mapping['Bulkrax::RdfEntry'] = 'http://opaquenamespace.org/ns/set'
+
+  # Change the collection_field_mapping to use a column called 'primary_collection'
+  config.collection_field_mapping = {
+  #  'Bulkrax::CsvEntry' => 'collection'
+    'Bulkrax::CsvEntry' => 'collection'
+  }
 
   # Field mappings
   # Create a completely new set of mappings by replacing the whole set as follows
@@ -68,27 +80,48 @@ Bulkrax.setup do |config|
   # Create a completely new set of mappings by replacing the whole set as follows
   config.field_mappings = {
      "Bulkrax::CsvParser" => {
-       # "abstract" => { from: ["abstract"] },
+       "abstract" => { from: ["abstract"], split: /\|~\|/ },
        # "alternative_title" => { from: ["alternative"] },
        # "bibliographic_citation" => { from: ["bibliographicCitation"] },
+       # "collection" => { from: ["collection"] },
        # "contributor" => { from: ["contributor"] },
-       # "creator" => { from: ["creator"] },
-       # "date_created" => { from: ["created"] },
-       # "description" => { from: ["description"] },
-       # "language" => { from: ["language"] },
+       "creator" => { from: ["creator"], split: /\|~\|/ },
+       "date_created" => { from: ["created"], split: /\|~\|/ },
+       "description" => { from: ["description"], split: /\|~\|/ },
+       "extent" => { from: ["extent"], split: /\|~\|/ },
+       "identifier" => { from: ["identifier"] },
+       "keyword" => { from: ["keyword"], split: /\|~\|/ },
+       "language" => { from: ["language"], split: /\|~\|/ },
        # "license" => { from: ["license"] },
-       # "publisher" => { from: ["publisher"] },
-       # "related_url" => { from: ["relation"] },
+       "publisher" => { from: ["publisher"], split: /\|~\|/ },
+       "related_url" => { from: ["relation"], split: /\|~\|/ },
+       # "remote_files" => { from: ["thumbnail_url"], parsed: true }
        # "rights_holder" => { from: ["rightsHolder"] },
-       # "rights_statement" => { from: ["rights"] },
-       # "source" => { from: ["source"] },
-       # "subject" => { from: ["subject"], parsed: true },
-        "title" => { from: ["title"] }
+       "resource_type" => { from: ["type"], split: /\|~\|/ },
+       "rights_statement" => { from: ["rights"] },
+       "source" => { from: ["source"], split: /\|~\|/ },
+       "spatial_coverage" => { from: ["spatial"], split: /\|~\|/ },
+       "subject" => { from: ["subject"], split: /\|~\|/ },
+       "title" => { from: ["title"], split: /\|~\|/ },
+       "visibility" => { from: ["visibility"], split: /\|~\|/ }
+
+	   ### SHOULD BE CONTROLLED VOCABS - PARSEDF
+       # "language" => { from: ["language"], split: /\|~\|/ },
        # "resource_type" => { from: ["type"], parsed: true },
+       # "subject" => { from: ["subject"], parsed: true },
        # "remote_files" => { from: ["thumbnail_url"], parsed: true }
      }
   }
 
+# Check into 'parse' method. - Currently not used.
+def parse_resource_type
+    'Aerial Photographs'
+end
+
+# Check into 'parse' method. - Currently not used.
+def parse_subject
+    'Aerial Photographs'
+end
 
   # Add to, or change existing mappings as follows
   #   e.g. to exclude date
