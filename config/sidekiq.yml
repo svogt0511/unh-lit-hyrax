@@ -1,3 +1,6 @@
+:concurrency: 3
 :queues:
   - default
+  - import
+  - export
   - ingest

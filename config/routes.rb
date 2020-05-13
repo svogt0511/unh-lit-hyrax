@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bulkrax::Engine, at: '/'
   post 'greetings/hello(.:format)'
   post 'greetings/hello_csv(.:format)'
   mount RailsAdmin::Engine => '/site_admin', as: 'rails_admin'

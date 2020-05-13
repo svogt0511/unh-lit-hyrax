@@ -76,3 +76,7 @@ gem 'mysql2'
 gem 'hydra-role-management'
 gem 'zizia', '~> 6.0.0'
 gem 'rails_admin'
+
+gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git'
+
+gem 'willow_sword', github: 'notch8/willow_sword'
