@@ -18,7 +18,13 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+=begin
   property :deduplication_key, predicate: "http://curationexperts.com/vocab/predicates#deduplicationKey", multiple: false do |index|
+    index.as :stored_searchable
+  end
+=end
+
+  property :deduplication_key, predicate: ::RDF::Vocab::BF2::identifiedBy, multiple: false do |index|
     index.as :stored_searchable
   end
 
