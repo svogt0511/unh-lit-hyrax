@@ -48,4 +48,10 @@ class SolrDocument
   def bibliographic_citation
     self['bibliographic_citation_tesim']
   end
+
+=begin
+  def alt_title
+    self['alt_title_tesim']
+  end
+=end
 end

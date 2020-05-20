@@ -14,20 +14,6 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
-    config.add_index_field solr_name("contact_email", :stored_searchable), label: "Contact Email"
-    config.add_show_field solr_name("contact_email", :stored_searchable)
-
-    config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
-    config.add_show_field solr_name("contact_phone", :stored_searchable)
-
-    config.add_index_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
-    config.add_show_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
-
-    config.add_index_field solr_name("extent", :stored_searchable), label: "Extent"
-    config.add_show_field solr_name("extent", :stored_searchable)
-
-    config.add_index_field solr_name("bibliographic_citation", :stored_searchable), label: "Bibliographic Citation"
-    config.add_show_field solr_name("bibliograhic_citation", :stored_searchable)
 
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
@@ -80,6 +66,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field "title_tesim", label: "Title", itemprop: 'name', if: false
     config.add_index_field "description_tesim", itemprop: 'description', helper_method: :iconify_auto_link
+	# New - alt_title
+    config.add_index_field solr_name("alt_title", :stored_searchable), label: "Alternate Title"
     config.add_index_field "keyword_tesim", itemprop: 'keywords', link_to_search: "keyword_sim"
     config.add_index_field "subject_tesim", itemprop: 'about', link_to_search: "subject_sim"
     config.add_index_field "creator_tesim", itemprop: 'creator', link_to_search: "creator_sim"
@@ -104,6 +92,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_show_field "title_tesim"
     config.add_show_field "description_tesim"
+    # New alt_title
+    config.add_show_field solr_name("alt_title", :stored_searchable)
     config.add_show_field "keyword_tesim"
     config.add_show_field "subject_tesim"
     config.add_show_field "creator_tesim"
@@ -119,6 +109,22 @@ class CatalogController < ApplicationController
     config.add_show_field "resource_type_tesim", label: "Resource Type"
     config.add_show_field "format_tesim"
     config.add_show_field "identifier_tesim"
+
+    # New fields
+    config.add_index_field solr_name("contact_email", :stored_searchable), label: "Contact Email"
+    config.add_show_field solr_name("contact_email", :stored_searchable)
+
+    config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
+    config.add_show_field solr_name("contact_phone", :stored_searchable)
+
+    config.add_index_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
+    config.add_show_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
+
+    config.add_index_field solr_name("extent", :stored_searchable), label: "Extent"
+    config.add_show_field solr_name("extent", :stored_searchable)
+
+    config.add_index_field solr_name("bibliographic_citation", :stored_searchable), label: "Bibliographic Citation"
+    config.add_show_field solr_name("bibliograhic_citation", :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
