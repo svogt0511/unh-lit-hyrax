@@ -1,0 +1,5 @@
+<% if f.object.multiple? key %>
+  <%= f.input :alt_title, as: :multi_value, input_html: { rows: '1', type: 'textarea'}, required: f.object.required?(key) %>
+<% else %>
+  <%= f.input :alt_title, as: :text, input_html: { rows: '1' }, required: f.object.required?(key) %>
+<% end %>
