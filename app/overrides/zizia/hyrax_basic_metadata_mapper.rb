@@ -1,20 +1,21 @@
+require_dependency Zizia::Engine.config.root.join('lib', 'zizia', 'hyrax', 'hyrax_basic_metadata_mapper.rb').to_s
+
 # frozen_string_literal: true
+require 'uri'
 
-class MyMapper < Zizia::HashMapper
-
-  ##
+##
   # A mapper for Hyrax metadata.
   #
   # Maps from hash accessor syntax (`['title']`) to method call dot syntax (`.title`).
   #
   # The fields provided by this mapper are the same as the properties defined in `Hyrax::CoreMetadata` and `Hyrax::BasicMetadata`.
   #
-  # @note This mapper allows you to set values for all the Hyrax fields, but depending on how you create the records,
-  # some of the values might get clobbered.  For example, if you use Hyrax's actor stack to create records, it might overwrite fields
-  # like `date_modified` or `depositor`.
+  # @note This mapper allows you to set values for all the Hyrax fields, but depending on how you create the records, some of the values might get clobbered.  For example, if you use Hyrax's actor stack to create records, it might overwrite fields like `date_modified` or `depositor`.
   #
   # @see HashMapper Parent class for more info and examples.
-  #class HyraxBasicMetadataMapper < HashMapper
+
+class Zizia::HyraxBasicMetadataMapper
+  ##
     # If your CSV headers don't exactly match the
     # the method name for the property's setter
     # method, add a mapping here.
@@ -22,31 +23,21 @@ class MyMapper < Zizia::HashMapper
     # but in the CSV file, the header is
     # 'resource type' (without the underscore).
     CSV_HEADERS = {
-      resource_type: 'dcterms:type',
-      #resource_type: 'resource type',
-      description: 'dcterms:description',
-      #description: 'abstract or summary',
-      rights_statement: 'dcterms:rights',
-      date_created: 'dcterms:date',
+      resource_type: 'resource type',
+      description: 'description',
+      rights_statement: 'rights statement',
+      date_created: 'date created',
       based_near: 'location',
       related_url: 'related url',
-      title: 'dcterms:title',
-      identifier: 'dcterms:identifier',
-      creator: 'dcterms:creator',
-      subject: 'dcterms:subject',
-      publisher: 'dcterms:publisher',
-      source: 'dcterms:source',
-      spatial_coverage: 'dcterms:spatial',
-      extent: 'dcterms:extent',
-      license: 'dcterms:license',
-      contributor: 'dcterms:contributor',
-      bibliographic_citation: 'dcterms:bibiliographic_citation'
+      spatial_coverage: 'spatial coverage',
+      extent: 'extent',
+      alt_title: 'alternative title'
     }.freeze
 
     ##
     # @return [Enumerable<Symbol>] The fields the mapper can process.
     def fields
-      core_fields + basic_fields + [:visibility, :files]
+      core_fields + basic_fields + [:visibility, :files] + zizia_fields
     end
 
     # Properties defined with `multiple: false` in
@@ -70,6 +61,10 @@ class MyMapper < Zizia::HashMapper
 
     def import_url
       single_value('import_url')
+    end
+
+    def deduplication_key
+      single_value('deduplication_key')
     end
 
     # We should accept visibility values that match the UI and transform them into
@@ -116,9 +111,6 @@ class MyMapper < Zizia::HashMapper
     ##
     # @see MetadataMapper#map_field
     def map_field(name)
-      Rails.logger.debug("CCCCC - MAPPING!!!")
-      puts "CCCCC - MAPPING!!!"
-
       method_name = name.to_s
       method_name = CSV_HEADERS[name] if CSV_HEADERS.keys.include?(name)
       key = matching_header(method_name)
@@ -126,9 +118,6 @@ class MyMapper < Zizia::HashMapper
     end
 
     def self.csv_header(field)
-      Rails.logger.debug "GOT HERE AAAA"
-      Rails.logger.debug field
-      Rails.logger.debug CSV_HEADERS[field.to_sym]
       CSV_HEADERS[field.to_sym]
     end
 
@@ -171,8 +160,12 @@ class MyMapper < Zizia::HashMapper
          :rights_statement, :publisher, :date_created,
          :subject, :language, :identifier,
          :based_near, :related_url,
-         :bibliographic_citation, :source, :spatial_coverage, :extent]
+         :bibliographic_citation, :source, :spatial_coverage, :extent,
+         :alt_title]
       end
-  #end
 
+      # Properties requires for zizia
+      def zizia_fields
+        [:deduplication_key]
+      end
 end

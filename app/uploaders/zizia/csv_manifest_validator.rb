@@ -2,24 +2,30 @@ require_dependency Zizia::Engine.config.root.join('app', 'uploaders', 'zizia', '
 
 class Zizia::CsvManifestValidator
 
+
 	def valid_headers
 		['title', 'files', 'representative media',
 		 'thumbnail', 'rendering', 'depositor',
 		 'date_uploaded', 'date_modified', 'label',
 		 'relative_path', 'import url', 'resource type',
-		 'creator', 'contributor', 'abstract or summary',
+		 'creator', 'contributor', 'description',
 		 'keyword', 'license', 'rights statement',
 		 'publisher', 'date created', 'subject',
 		 'language', 'identifier', 'location',
 		 'related url', 'bibliographic_citation',
-		 'source', 'visibility', 'deduplication_key', 'type']
+		 'source', 'visibility', 'deduplication_key', 'type',
+		 'abstract', 'extent', 'spatial coverage',
+		 'alternative title']
 	end
 
 
       def required_headers
         #['title', 'creator', 'keyword', 'rights statement', 'visibility', 'files', 'deduplication_key']
-        ['keyword', 'visibility', 'files', 'deduplication_key']
+        ['title', 'creator', 'keyword', 'rights statement', 'visibility', 'files', 'deduplication_key']
+        #['keyword', 'visibility', 'files', 'deduplication_key']
       end
+
+=begin
 
       def missing_headers
 
@@ -42,4 +48,5 @@ class Zizia::CsvManifestValidator
       invalid_resource_type
       invalid_rights_statement
     end
+=end
 end

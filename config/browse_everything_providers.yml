@@ -10,7 +10,9 @@ box:
 dropbox:
    client_id: <%= ENV['DROPBOX_CLIENT_ID'] %>
    client_secret: <%= ENV['DROPBOX_CLIENT_SECRET'] %>
-   download_directory: tmp/dropbox
+   # download_directory: tmp/dropbox
+   download_directory: tmp/imports/files
+
 # box:
 #   client_id: YOUR_BOX_CLIENT_ID
 #   client_secret: YOUR_BOX_CLIENT_SECRET
