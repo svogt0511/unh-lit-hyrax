@@ -24,12 +24,14 @@ class Zizia::HyraxBasicMetadataMapper
     # 'resource type' (without the underscore).
     CSV_HEADERS = {
       resource_type: 'resource type',
-      # description: 'abstract or summary',
       description: 'description',
       rights_statement: 'rights statement',
       date_created: 'date created',
       based_near: 'location',
-      related_url: 'related url'
+      related_url: 'related url',
+      spatial_coverage: 'spatial coverage',
+      extent: 'extent',
+      alt_title: 'alternative title'
     }.freeze
 
     ##
@@ -158,7 +160,8 @@ class Zizia::HyraxBasicMetadataMapper
          :rights_statement, :publisher, :date_created,
          :subject, :language, :identifier,
          :based_near, :related_url,
-         :bibliographic_citation, :source]
+         :bibliographic_citation, :source, :spatial_coverage, :extent,
+         :alt_title]
       end
 
       # Properties requires for zizia
