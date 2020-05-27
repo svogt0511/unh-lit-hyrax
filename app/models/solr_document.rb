@@ -49,6 +49,9 @@ class SolrDocument
     self['bibliographic_citation_tesim']
   end
 
+  def medium
+    self['medium_tesim']
+  end
 =begin
   def alt_title
     self['alt_title_tesim']
