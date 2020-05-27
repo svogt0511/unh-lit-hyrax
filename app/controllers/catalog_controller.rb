@@ -84,7 +84,6 @@ class CatalogController < ApplicationController
     config.add_index_field "license_tesim", helper_method: :license_links
     config.add_index_field "resource_type_tesim", label: "Resource Type", link_to_search: "resource_type_sim"
     config.add_index_field "file_format_tesim", link_to_search: "file_format_sim"
-    config.add_index_field "identifier_tesim", helper_method: :index_field_link, field_name: 'identifier'
     config.add_index_field Hydra.config.permissions.embargo.release_date, label: "Embargo release date", helper_method: :human_readable_date
     config.add_index_field Hydra.config.permissions.lease.expiration_date, label: "Lease expiration date", helper_method: :human_readable_date
 
@@ -108,7 +107,7 @@ class CatalogController < ApplicationController
     config.add_show_field "license_tesim"
     config.add_show_field "resource_type_tesim", label: "Resource Type"
     config.add_show_field "format_tesim"
-    config.add_show_field "identifier_tesim"
+    #config.add_show_field "identifier_tesim"
 
     # New fields
     config.add_index_field solr_name("contact_email", :stored_searchable), label: "Contact Email"
@@ -125,6 +124,13 @@ class CatalogController < ApplicationController
 
     config.add_index_field solr_name("bibliographic_citation", :stored_searchable), label: "Bibliographic Citation"
     config.add_show_field solr_name("bibliograhic_citation", :stored_searchable)
+
+    config.add_index_field solr_name("medium", :stored_searchable), label: "Medium"
+    config.add_show_field solr_name("medium", :stored_searchable)
+
+    config.add_index_field "identifier_tesim", helper_method: :index_field_link, field_name: 'identifier'
+    config.add_show_field "identifier_tesim"
+
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -246,6 +252,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field('identifier') do |field|
       solr_name = "id_tesim"
+      # solr_name = "identifier_tesim"
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

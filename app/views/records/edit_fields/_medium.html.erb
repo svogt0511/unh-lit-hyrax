@@ -1,0 +1,9 @@
+<% require "medium_service" %>
+<% medium_service = Hyrax::MediumService.new %>
+<%= f.input :medium, as: :select,
+    collection: medium_service.select_all_options,
+    include_blank: true,
+    item_helper: medium_service.method(:include_current_value),
+    #input_html: { class: 'form-control', multiple: true }
+    input_html: { class: 'form-control' }
+%>

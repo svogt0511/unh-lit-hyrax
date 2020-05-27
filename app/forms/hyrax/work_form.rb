@@ -4,7 +4,7 @@ module Hyrax
   # Generated form for Work
   class WorkForm < Hyrax::Forms::WorkForm
     self.model_class = ::Work
-    self.terms += [:resource_type, :spatial_coverage, :extent, :bibliographic_citation,]
+    self.terms += [:resource_type, :spatial_coverage, :extent, :bibliographic_citation, :medium]
 
       # @param [Symbol] key the field to read
       # @return the value of the form field.
