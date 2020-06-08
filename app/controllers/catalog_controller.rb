@@ -1,6 +1,7 @@
 class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
+  include BlacklightOaiProvider::Controller
 
   # This filter applies the hydra access controls
   before_action :enforce_show_permissions, only: :show
@@ -29,6 +30,7 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
+      fl: '*',
       qt: "search",
       rows: 10,
       qf: "title_tesim description_tesim creator_tesim keyword_tesim"
@@ -314,6 +316,33 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
+
+	# blacklight_oai_provider
+
+    config.default_document_solr_params = {
+      qt: 'search',
+      fl: '*',
+      rows: 1,
+      q: '{!raw f=id v=$id}'
+    }
+
+	config.oai = {
+	  provider: {
+	    repository_name: 'DigitalCollections.unh.edu',
+	    repository_url: 'http://localhost:3000/catalog/oai',
+	    record_prefix: 'oai:test',
+	    admin_email: 'root@localhost',
+	    sample_id: '109660'
+	  },
+	  document: {
+	    limit: 25,            # number of records returned with each request, default: 15
+	    set_fields: [         # ability to define ListSets, optional, default: nil
+		  { label: 'title', solr_field: 'title_tesim' },
+		  { label: 'language', solr_field: 'language_tesim'}
+	    ]
+	  }
+	}
+
   end
 
   # disable the bookmark control from displaying in gallery view

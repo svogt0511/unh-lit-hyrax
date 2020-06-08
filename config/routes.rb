@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  concern :oai_provider, BlacklightOaiProvider::Routes.new
+
   mount Bulkrax::Engine, at: '/'
   post 'greetings/hello(.:format)'
   post 'greetings/hello_csv(.:format)'
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
+    concerns :oai_provider
+
     concerns :searchable
   end
 

@@ -6,6 +6,7 @@ class SolrDocument
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
 
+  include BlacklightOaiProvider::SolrDocument
 
   # self.unique_key = 'id'
 
@@ -21,6 +22,32 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+=begin
+  field_semantics.merge!(
+    title: "title_display",
+    creator: "author_display",
+    date: "pub_date",
+    subject: "subject_topic_facet",
+    format: "format",
+    language: "language_facet"
+  )
+=end
+
+  field_semantics.merge!(
+    title: "title_tesim",
+    alt_title: "alt_title_tesim",
+    creator: "creator_tesim",
+    date: "date_created_tesim",
+    subject: "subject_tesim",
+    keyword: "keyword_sim",
+    description: "description_tesim",
+    publisher: "publisher_tesim",
+    format: "medium_tesim",
+    language: "language_tesim",
+    #description: "member_of_collection_ids_ssim",
+    #rights_statement: "rights_statement_tesim"
+  )
 
   # Do content negotiation for AF models.
 
@@ -52,9 +79,12 @@ class SolrDocument
   def medium
     self['medium_tesim']
   end
-=begin
+
   def alt_title
     self['alt_title_tesim']
   end
-=end
+
+  # blacklight_oai_provider
+  #self.timestamp_key = 'record_creation_date' # Default: 'timestamp'
+
 end

@@ -80,3 +80,6 @@ gem 'rails_admin'
 gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git'
 
 gem 'willow_sword', github: 'notch8/willow_sword'
+
+gem 'oai', '~> 0.4'
+gem 'blacklight_oai_provider', '~> 6.0.0'
