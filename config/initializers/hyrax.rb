@@ -239,6 +239,7 @@ Hyrax.config do |config|
   # ActiveJob queue to handle ingest-like jobs
   # config.ingest_queue_name = :default
   config.ingest_queue_name = :ingest
+  # config.ingest_queue_name = :import
 
   ## Attributes for the lock manager which ensures a single process/thread is mutating a ore:Aggregation at once.
   # How many times to retry to acquire the lock before raising UnableToAcquireLockError

@@ -103,13 +103,13 @@ Bulkrax.setup do |config|
        "spatial_coverage" => { from: ["spatial"], split: /\|~\|/ },
        "subject" => { from: ["subject"], split: /\|~\|/ },
        "title" => { from: ["title"], split: /\|~\|/ },
-       "visibility" => { from: ["visibility"], split: /\|~\|/ }
+       "visibility" => { from: ["visibility"], split: /\|~\|/ },
 
 	   ### SHOULD BE CONTROLLED VOCABS - PARSEDF
        # "language" => { from: ["language"], split: /\|~\|/ },
        # "resource_type" => { from: ["type"], parsed: true },
        # "subject" => { from: ["subject"], parsed: true },
-       # "remote_files" => { from: ["thumbnail_url"], parsed: true }
+       "remote_files" => { from: ["thumbnail_url"], parsed: true }
      }
   }
 
