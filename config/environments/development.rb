@@ -86,4 +86,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
+  # Allow public directory direct access through browser?
+  config.public_file_server.enabled = true
+
 end
