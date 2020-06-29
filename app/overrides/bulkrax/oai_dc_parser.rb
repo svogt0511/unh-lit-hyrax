@@ -18,10 +18,12 @@ module Bulkrax
 # CODE BLOCK 1
 #
 
+#=begin
           seen[record.identifier] = true
           new_entry = entry_class.where(importerexporter: self.importerexporter, identifier: record.identifier).first_or_create!
           ImportWorkJob.send(perform_method, new_entry.id, importerexporter.current_importer_run.id)
           increment_counters(index)
+#=end
 
 # Use either code block 1 or code block 2, not both.
 # Eventually, direction for this should come from the importer form.  We should customize the importer form for this.
@@ -45,6 +47,7 @@ puts "JJJJJ 2 - CREATE WORKS - DID NOT NOT NOT FIND THE RECORD!"
 puts record.identifier.inspect
 end
 =end
+
 
         end
       end

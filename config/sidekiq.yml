@@ -1,5 +1,6 @@
 #:concurrency: 3
-:concurrency: 1
+#:concurrency: 3
+:concurrency: <%= ENV['SIDEKIQ_MAX_THREADS'] || '3' %>
 :queues:
   - default
   - import
