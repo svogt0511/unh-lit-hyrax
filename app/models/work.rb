@@ -31,6 +31,19 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+#####Sample Code####
+#  before_save :whatever
+
+  def whatever
+ puts "CCCCCC - WHATEVER! START"
+ puts self.inspect
+ puts "CCCCCC - WHATEVER! MIDDLE"
+ puts self.date_created
+ 	self.date_created = [ ::RDF::Literal.new("2009-12-31", datatype: ::RDF::URI('http://purl.org/dc/terms/W3CDTF')) ]
+ puts self.inspect
+ puts "CCCCCC - WHATEVER! END"
+  end
+
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
