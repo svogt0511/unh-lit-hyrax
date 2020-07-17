@@ -9,7 +9,9 @@ class CustomMapper < Zizia::HashMapper
   #
   # The fields provided by this mapper are the same as the properties defined in `Hyrax::CoreMetadata` and `Hyrax::BasicMetadata`.
   #
-  # @note This mapper allows you to set values for all the Hyrax fields, but depending on how you create the records, some of the values might get clobbered.  For example, if you use Hyrax's actor stack to create records, it might overwrite fields like `date_modified` or `depositor`.
+  # @note This mapper allows you to set values for all the Hyrax fields, but depending on how you create the records,
+  # some of the values might get clobbered.  For example, if you use Hyrax's actor stack to create records,
+  # it might overwrite fields like `date_modified` or `depositor`.
   #
   # @see HashMapper Parent class for more info and examples.
   #class HyraxBasicMetadataMapper < HashMapper
@@ -20,20 +22,36 @@ class CustomMapper < Zizia::HashMapper
     # but in the CSV file, the header is
     # 'resource type' (without the underscore).
     CSV_HEADERS = {
-      resource_type: 'resource type',
-      #description: 'abstract or summary',
-      description: 'description',
-      #rights_statement: 'rights statement',
-      rights_statement: 'rights',
-      date_created: 'date created',
+      alt_title: 'alternative',
       based_near: 'location',
-      related_url: 'related url'
+      bibliographic_citation: 'bibiliographic_citation',
+      contributor: 'contributor',
+      creator: 'creator',
+      date_created: 'created',
+      deduplication_key: 'deduplication key',
+      description: 'description',
+      extent: 'extent',
+      files: 'files',
+      identfier: 'identifier',
+      keyword: 'keyword',
+      language: 'language',
+      license: 'license',
+      publisher: 'publisher',
+      related_url: 'related url',
+      resource_type: 'type',
+      rights_statement: 'rights',
+      source: 'source',
+      spatial: 'spatial',
+      subject: 'subject',
+      temporal: 'temporal',
+      title: 'title',
+      visibility: 'visibility',
     }.freeze
 
     ##
     # @return [Enumerable<Symbol>] The fields the mapper can process.
     def fields
-      core_fields + basic_fields + [:visibility, :files] + zizia_fields
+      core_fields + basic_fields + hyrax_fields + zizia_fields
     end
 
     # Properties defined with `multiple: false` in
@@ -107,7 +125,6 @@ class CustomMapper < Zizia::HashMapper
     ##
     # @see MetadataMapper#map_field
     def map_field(name)
-      Rails.logger.debug("SKV2000 - CCCCC - MAPPING!!!")
       method_name = name.to_s
       method_name = CSV_HEADERS[name] if CSV_HEADERS.keys.include?(name)
       key = matching_header(method_name)
@@ -152,6 +169,13 @@ class CustomMapper < Zizia::HashMapper
       # are not included here because we don't expect users to directly
       # import them.
       def basic_fields
+        [:alt_title, :based_near, :bibliographic_citation, :contributor, :creator, :date_created,
+         :description, :extent, :identifier, :keyword, :language, :license, :publisher,
+         :related_url, :resource_type, :rights_statement,
+         :source, :spatial, :subject, :temporal]
+      end
+=begin
+      def basic_fields
         [:resource_type, :creator, :contributor,
          :description, :keyword, :license,
          :rights_statement, :publisher, :date_created,
@@ -159,10 +183,16 @@ class CustomMapper < Zizia::HashMapper
          :based_near, :related_url,
          :bibliographic_citation, :source]
       end
+=end
 
-      # Properties requires for zizia
+      # Zizia properties
       def zizia_fields
         [:deduplication_key]
+      end
+
+      # Hyrax properties
+      def hyrax_fields
+        [:visibility, :files]
       end
   #end
 end
