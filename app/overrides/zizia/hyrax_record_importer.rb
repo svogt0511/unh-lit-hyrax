@@ -20,4 +20,8 @@ class Zizia::HyraxRecordImporter
       filepath
     end
 
+    def self.find_file_path_class(filename)
+      filepath = Dir.glob(file_attachments_path + "/**/#{filename}").first
+    end
+
 end

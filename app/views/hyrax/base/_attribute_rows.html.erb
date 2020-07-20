@@ -22,7 +22,8 @@
 <%= presenter.attribute_to_html(:contact_phone, html_dl: true) %>
 <%= presenter.attribute_to_html(:contact_email, html_dl: true) %>
 <%= presenter.attribute_to_html(:date_created, html_dl: true) %>
-<%= presenter.attribute_to_html(:spatial_coverage, html_dl: true) %>
+<%= presenter.attribute_to_html(:spatial, html_dl: true) %>
 <%= presenter.attribute_to_html(:extent, html_dl: true) %>
 <%= presenter.attribute_to_html(:bibliographic_citation, html_dl: true) %>
-<%= presenter.attribute_to_html(:medium, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:medium, html_dl: true) %>
+<%= presenter.attribute_to_html(:format, render_as: :faceted, html_dl: true) %>

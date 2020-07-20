@@ -64,8 +64,8 @@ class SolrDocument
     self['contact_phone_tesim']
   end
 
-  def spatial_coverage
-    self['spatial_coverage_tesim']
+  def spatial
+    self['spatial_tesim']
   end
 
   def extent
@@ -82,6 +82,10 @@ class SolrDocument
 
   def alt_title
     self['alt_title_tesim']
+  end
+
+  def format
+    self['format_tesim']
   end
 
   # blacklight_oai_provider

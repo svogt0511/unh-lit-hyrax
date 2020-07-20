@@ -1,0 +1,9 @@
+<% require "format_service" %>
+<% format_service = Hyrax::FormatService.new %>
+<%= f.input :format, as: :select,
+    collection: format_service.select_all_options,
+    include_blank: true,
+    item_helper: format_service.method(:include_current_value),
+    #input_html: { class: 'form-control', multiple: true }
+    input_html: { class: 'form-control' }
+%>

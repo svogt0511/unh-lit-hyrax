@@ -118,8 +118,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
     config.add_show_field solr_name("contact_phone", :stored_searchable)
 
-    config.add_index_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
-    config.add_show_field solr_name("spatial_coverage", :stored_searchable), label: "Spatial"
+    config.add_index_field solr_name("spatial", :stored_searchable), label: "Spatial"
+    config.add_show_field solr_name("spatial", :stored_searchable)
 
     config.add_index_field solr_name("extent", :stored_searchable), label: "Extent"
     config.add_show_field solr_name("extent", :stored_searchable)

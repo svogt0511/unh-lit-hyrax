@@ -10,7 +10,7 @@ class Work < ActiveFedora::Base
   validates :creator, presence: { message: 'Your work must have a creator.' }
   validates :rights_statement, presence: { message: 'Your work must have a rights statement.' }
 
-  property :spatial_coverage, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
+  property :spatial, predicate: ::RDF::Vocab::DC.spatial, multiple: true do |index|
     index.as :stored_searchable
   end
 
@@ -27,12 +27,16 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :medium, predicate: ::RDF::Vocab::DC.medium, multiple: false do |index|
+  property :medium, predicate: ::RDF::Vocab::DC.medium, multiple: true do |index|
     index.as :stored_searchable
   end
 
-#####Sample Code####
-#  before_save :whatever
+  property :format, predicate: ::RDF::Vocab::DC.format, multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+
+##### Sample Code: BEGIN ####
+#  before_save :whatever sample method for setting RDF::Literal data types.
 
   def whatever
  puts "CCCCCC - WHATEVER! START"
@@ -43,6 +47,8 @@ class Work < ActiveFedora::Base
  puts self.inspect
  puts "CCCCCC - WHATEVER! END"
   end
+
+##### Sample Code: END ####
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)

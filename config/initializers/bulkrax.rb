@@ -100,7 +100,7 @@ Bulkrax.setup do |config|
        "resource_type" => { from: ["type"], split: /\|~\|/ },
        "rights_statement" => { from: ["rights"] },
        "source" => { from: ["source"], split: /\|~\|/ },
-       "spatial_coverage" => { from: ["spatial"], split: /\|~\|/ },
+       "spatial" => { from: ["spatial"], split: /\|~\|/ },
        "subject" => { from: ["subject"], split: /\|~\|/ },
        "title" => { from: ["title"], split: /\|~\|/ },
        "visibility" => { from: ["visibility"], split: /\|~\|/ },
