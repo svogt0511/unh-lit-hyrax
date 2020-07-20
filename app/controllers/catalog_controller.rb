@@ -109,29 +109,28 @@ class CatalogController < ApplicationController
     config.add_show_field "license_tesim"
     config.add_show_field "resource_type_tesim", label: "Resource Type"
     config.add_show_field "format_tesim"
-    #config.add_show_field "identifier_tesim"
+    config.add_show_field "identifier_tesim"
+    config.add_index_field "identifier_tesim", helper_method: :index_field_link, field_name: 'identifier'
 
     # New fields
-    config.add_index_field solr_name("contact_email", :stored_searchable), label: "Contact Email"
-    config.add_show_field solr_name("contact_email", :stored_searchable)
-
-    config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
-    config.add_show_field solr_name("contact_phone", :stored_searchable)
-
-    config.add_index_field solr_name("spatial", :stored_searchable), label: "Spatial"
-    config.add_show_field solr_name("spatial", :stored_searchable)
-
-    config.add_index_field solr_name("extent", :stored_searchable), label: "Extent"
-    config.add_show_field solr_name("extent", :stored_searchable)
 
     config.add_index_field solr_name("bibliographic_citation", :stored_searchable), label: "Bibliographic Citation"
     config.add_show_field solr_name("bibliograhic_citation", :stored_searchable)
 
+    config.add_index_field solr_name("extent", :stored_searchable), label: "Extent"
+    config.add_show_field solr_name("extent", :stored_searchable)
+
     config.add_index_field solr_name("medium", :stored_searchable), label: "Medium"
     config.add_show_field solr_name("medium", :stored_searchable)
 
-    config.add_index_field "identifier_tesim", helper_method: :index_field_link, field_name: 'identifier'
-    config.add_show_field "identifier_tesim"
+    config.add_index_field solr_name("provenance", :stored_searchable), label: "Provenance"
+    config.add_show_field solr_name("provenance", :stored_searchable)
+
+    config.add_index_field solr_name("spatial", :stored_searchable), label: "Spatial"
+    config.add_show_field solr_name("spatial", :stored_searchable)
+
+    config.add_index_field solr_name("temporal", :stored_searchable), label: "Temporal"
+    config.add_show_field solr_name("temporal", :stored_searchable)
 
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -253,8 +252,8 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('identifier') do |field|
-      solr_name = "id_tesim"
-      # solr_name = "identifier_tesim"
+      # solr_name = "id_tesim"
+      solr_name = "identifier_tesim"
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

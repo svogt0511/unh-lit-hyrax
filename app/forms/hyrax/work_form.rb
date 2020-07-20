@@ -4,8 +4,7 @@ module Hyrax
   # Generated form for Work
   class WorkForm < Hyrax::Forms::WorkForm
     self.model_class = ::Work
-    self.terms += [:resource_type, :spatial, :extent, :bibliographic_citation, :medium, :format]
-    #self.required_fields += [:keyword, :rights]
+    self.terms += [:bibliographic_citation, :extent, :format, :medium, :provenance, :resource_type, :spatial, :temporal]
     # Required fields - title, creator, rights plus:
     self.required_fields += [:identifier, :language]
 

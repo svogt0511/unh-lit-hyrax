@@ -4,5 +4,10 @@ en:
       work:     'fa fa-file-text-o'
     select_type:
       work:
-        description:        "Work works"
+        description:        "Work"
         name:               "Work"
+
+  simple_form:
+    labels:
+      defaults:
+        alt_title: Alternative Title

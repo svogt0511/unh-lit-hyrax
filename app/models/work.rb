@@ -14,6 +14,14 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :temporal, predicate: ::RDF::Vocab::DC.temporal, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :provenance, predicate: ::RDF::Vocab::DC.provenance, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
   property :extent, predicate: ::RDF::Vocab::DC.extent,  multiple: true do |index|
     index.as :stored_searchable
   end

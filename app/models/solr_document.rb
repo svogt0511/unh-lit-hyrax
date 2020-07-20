@@ -56,36 +56,37 @@ class SolrDocument
   # Documented code does not work:
   #   https://samvera.github.io/customize-metadata-show-page.html#create-a-custom-presenter-class
   #
-  def contact_email
-    self['contact_email_tesim']
-  end
 
-  def contact_phone
-    self['contact_phone_tesim']
-  end
-
-  def spatial
-    self['spatial_tesim']
-  end
-
-  def extent
-    self['extent_tesim']
+  def alt_title
+    self['alt_title_tesim']
   end
 
   def bibliographic_citation
     self['bibliographic_citation_tesim']
   end
 
-  def medium
-    self['medium_tesim']
-  end
-
-  def alt_title
-    self['alt_title_tesim']
+  def extent
+    self['extent_tesim']
   end
 
   def format
     self['format_tesim']
+  end
+
+  def medium
+    self['medium_tesim']
+  end
+
+  def provenance
+    self['provenance_tesim']
+  end
+
+  def spatial
+    self['spatial']
+  end
+
+  def temporal
+    self['temporal']
   end
 
   # blacklight_oai_provider
