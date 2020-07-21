@@ -13,7 +13,6 @@ en:
           publisher_sim: Publisher
           subject_sim: Subject
         index:
-          alt_title: Alternate Title
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Creator
@@ -30,7 +29,7 @@ en:
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
         show:
-          alt_title: Alternate Title
+          alt_title: Alternative Title
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Creator

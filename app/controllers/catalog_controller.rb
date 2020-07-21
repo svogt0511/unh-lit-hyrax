@@ -69,7 +69,7 @@ class CatalogController < ApplicationController
     config.add_index_field "title_tesim", label: "Title", itemprop: 'name', if: false
     config.add_index_field "description_tesim", itemprop: 'description', helper_method: :iconify_auto_link
 	# New - alt_title
-    config.add_index_field solr_name("alt_title", :stored_searchable), label: "Alternate Title"
+    config.add_index_field solr_name("alt_title", :stored_searchable), label: "Alternative Title"
     config.add_index_field "keyword_tesim", itemprop: 'keywords', link_to_search: "keyword_sim"
     config.add_index_field "subject_tesim", itemprop: 'about', link_to_search: "subject_sim"
     config.add_index_field "creator_tesim", itemprop: 'creator', link_to_search: "creator_sim"

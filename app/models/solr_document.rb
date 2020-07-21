@@ -82,11 +82,11 @@ class SolrDocument
   end
 
   def spatial
-    self['spatial']
+    self['spatial_tesim']
   end
 
   def temporal
-    self['temporal']
+    self['temporal_tesim']
   end
 
   # blacklight_oai_provider
