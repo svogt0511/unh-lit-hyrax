@@ -39,7 +39,7 @@ class ModularImporter
       pre_ingest_work = Zizia::PreIngestWork.find_or_create_by(deduplication_key: record.mapper.metadata['deduplication_key'])
       pre_ingest_work.csv_import_detail_id = csv_import_detail.id
       record.mapper.files.each do |child_file|
-        full_path = Dir.glob(importer.record_importer.file_attachments_path + "/**/#{child_file}").first
+        full_path = Dir.glob(Zizia.config.import_path + "/**/#{child_file}").first
         # Raise exception if full_path is nil.  That means the file is not found.  Raising an exception allows you to state a reason in the dead job which results.
       	raise ::Zizia::CSVImportError, "Cannot find file #{child_file}. Check your CSV import \'files\' field for errors." if full_path.nil?
         pre_ingest_file = Zizia::PreIngestFile.new(row_number: index + 1,

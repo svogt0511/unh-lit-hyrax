@@ -30,11 +30,106 @@ function prepZizia(event) {
               }
             }
           }
+
+          my_json =  JSON.stringify( $("[name='selected_files']") );
+          console.log ('AAAAA start');
+          // console.log (my_json);
+          var values = $("input[name='selected_files']").map(function(){return $(this).val();});
+          console.log ( values );
+           console.log ('AAAAA middle');
+					//var data = JSON.stringify( $(form).serializeArray() );
+/*
+					var myForm = $("form#zizia-csv-imports-new");
+					var myValues = $("input[name='selected_files[]']").serializeArray();
+					//$.each($($("form#zizia-csv-imports-new input[title*='selected_files']")).serializeArray(), function(i, field) {
+    			//		values[field.name] = field.value;
+          //});
+          /*
+          var cloud_files = $.each( myValues , function(i, field) {
+              values[i] = field.value;
+    					//values[field.name] = field.value;
+
+    					console.log (i);
+    					console.log ( field );
+          });
+          --/
+
+          var myCloudFiles = (function (myArr) {
+          	var i;
+          	var values = [];
+						for (i = 0; i < myArr.length; i++) {
+  						values[i] = myArr[i]['value'];
+						}
+						return values;
+					})(myValues);
+
+					var cloud_files = JSON.stringify( myCloudFiles );
+
+					console.log (myValues);
+					console.log (myCloudFiles);
+					console.log (cloud_files);
+					console.log ('AAAAA middle 1');
+					//data = JSON.stringify( $("input[name='selected_files*']").serializeArray() );
+					//console.log (data);
+
+					//var obj = JSON.parse(data);
+					//data = obj.selected_files;
+					//console.log (data);
+         /*
+          $("[name='selected_files']").each( obj, function( key, value ) {
+            console.log( key + ": " + value );
+          });--/
+          */
+
+  				var myForm = $("form#zizia-csv-imports-new");
+					var myValues = $("[name^='selected_files']").not("[name='selected_files[]']").serializeArray();
+console.log (myValues);
+					var myFiles = JSON.stringify( myValues )
+console.log  (myFiles);
+
+					var i = 0;
+					var loop = true;
+					var myFiles = {};
+					while ( $("[name^='selected_files[" + i + "]']").length ) {
+
+					   console.log ( $("[name^='selected_files[" + i + "]']") );
+
+					   i_str = i.toString();
+					   myFiles[i] = {};
+
+					  // myFiles[i].url = $("[name^='selected_files[" + i + "][url]']").first;
+					  // myFiles[i].file_name = $("[name^='selected_files[" + i + "][file_name]']").first;
+					  // myFiles[i].file_size = $("[name^='selected_files[" + i + "][file_size]']").first;
+					  myFiles[i_str].url = $("[name^='selected_files[" + i + "][url]']").first().val();
+					  myFiles[i_str].file_name = $("[name^='selected_files[" + i + "][file_name]']").first().val();
+					  myFiles[i_str].file_size = $("[name^='selected_files[" + i + "][file_size]']").first().val();
+
+					   i++;
+					}
+console.log (myFiles);
+          console.log ('AAAAA end');
+console.log(JSON.stringify( myFiles ));
+
+          $.ajax({
+    				url: "/csv_imports/be_upload",
+    				type: 'post',
+    				dataType: 'json',
+            data: { "cloud_files" : JSON.stringify( myFiles ) },
+            //data: $("[name='selected_files']").stringify(),
+    				success: function(resp) {
+    				  console.log(resp);
+    				}
+  				});
+
+  				console.log("PREPPING ZIZIA JAVASCRIPT EVENTS!! - AFTER BE_UPLOAD");
         }
       }
+
     };
     var observer = new MutationObserver (callback);
     observer.observe (form, config);
+
+
   }
 
   console.log("PREPPING ZIZIA JAVASCRIPT EVENTS!! - END");

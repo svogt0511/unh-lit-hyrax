@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         mount BrowseEverything::Engine => '/browse'
 
   mount Zizia::Engine => '/'
+  post '/csv_imports/be_upload(.:format)', to: 'zizia/csv_imports#be_upload'
+
   mount Blacklight::Engine => '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new

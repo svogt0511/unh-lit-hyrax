@@ -4,7 +4,7 @@ class Zizia::HyraxRecordImporter
 
     # The path on disk where file attachments can be found
     def file_attachments_path
-      ENV['IMPORT_PATH'] || '/opt/data'
+      Zizia.config.import_path || ENV['IMPORT_PATH'] || '/opt/data'
     end
 
     ##
@@ -14,14 +14,9 @@ class Zizia::HyraxRecordImporter
     # @param [String] filename
     # @return [String] a full pathname to the found file
     def find_file_path(filename)
-      filepath = Dir.glob(file_attachments_path + "/**/#{filename}").first
-
+      filepath = Dir.glob(Zizia.config.import_path + "/**/#{filename}").first
       raise "Cannot find file #{filename}... Are you sure it has been uploaded and that the filename matches?" if filepath.nil?
       filepath
-    end
-
-    def self.find_file_path_class(filename)
-      filepath = Dir.glob(file_attachments_path + "/**/#{filename}").first
     end
 
 end

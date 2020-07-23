@@ -30,17 +30,18 @@
             </div>
           <% end %>
 
-		  <% if Hyrax.config.browse_everything? %>
-		  	<div class="well well-sm">
-		      <h4><span class="bullet" style="margin-top: 5px;">C</span></h4>
+					<% if Hyrax.config.browse_everything? %>
+						<div class="well well-sm">
+							<h4><span class="bullet" style="margin-top: 5px;">C</span></h4>
 
-			  <h4>Add Files to Import:</h4>
-			  <p>Choose files to upload. The filenames must be unique, and the filenames must be referenced in a column called 'file' in the accompanying CSV file.</p>
-			  <div class="text-center">
-			    <%= render 'browse_everything', form: form %>
-			  </div>
-			</div>
-		  <% end %>
+						<h4>Add Files to Import:</h4>
+						<p>Choose files to upload. The filenames must be unique, and the filenames must be referenced in a column called 'file' in the accompanying CSV file.</p>
+						<div class="text-center">
+							<%= render 'browse_everything', form: form %>
+						</div>
+					</div>
+					<% end %>
+
         </div>
 
         <div class="col-md-4">

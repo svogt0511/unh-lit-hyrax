@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+# Borrowed from Bulkrax for use with 'BrowseEverything'
 module Zizia
   class DownloadCloudFileJob < ApplicationJob
-    queue_as :ingest
-    # queue_as :upload
+    # queue_as :ingest
+    queue_as :upload
 
     # Retrieve cloud file and write to the imports directory
     # Note: if using the file system, the mounted directory in
