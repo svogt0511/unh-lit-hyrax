@@ -1,0 +1,4 @@
+<%= form.select :update_actor_stack, options_for_select([['Overwrite All Files & Metadata', 'HyraxDelete'],
+                                                         ['Update Existing Metadata, create new works', 'HyraxMetadataOnly'],
+                                                         ['Ignore Existing Works, new works only', 'HyraxOnlyNew' ]]), {}, class: "form-control", id: "update_actor_stack_id", include_blank: true, required: true  %>
+
