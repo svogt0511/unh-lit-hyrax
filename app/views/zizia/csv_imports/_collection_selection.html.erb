@@ -1,1 +1,1 @@
-<%= form.select :fedora_collection_id, options_for_select(collections_for_select), {}, class: "form-control", id: "fedora_collection_id", include_blank: true, required: true  %>
+<%= form.select :fedora_collection_id, options_for_select(collections_for_select.sort()), {}, class: "form-control", id: "fedora_collection_id", include_blank: true, required: true %>
