@@ -25,7 +25,7 @@
 
       <% unless File.directory?(ENV['IMPORT_PATH']) %>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="alert alert-danger">
               <div id='csv_errors'>
                 <b><i class="glyphicon glyphicon-remove-sign"></i> This import has the following errors:</b>
@@ -40,7 +40,7 @@
 
       <% unless @csv_import.manifest_errors.empty? %>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="alert alert-danger">
               <div id='csv_errors'>
                 <b><i class="glyphicon glyphicon-remove-sign"></i> The CSV file has the following errors:</b>

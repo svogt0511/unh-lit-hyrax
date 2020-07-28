@@ -2,6 +2,22 @@ require_dependency Zizia::Engine.config.root.join('app', 'uploaders', 'zizia', '
 
 class Zizia::CsvManifestValidator
 
+    def initialize(manifest_uploader)
+      @csv_file = manifest_uploader.file
+      @errors = []
+      @warnings = []
+      @selected_files = []
+    end
+
+    # These are stored in memory only, not persisted
+    def selected_files
+      @selected_files ? @selected_files : []
+    end
+
+    def selected_files=(value)
+      @selected_files = value
+    end
+
 
 	def valid_headers
 		['title', 'files', 'representative media',
@@ -35,6 +51,7 @@ class Zizia::CsvManifestValidator
 		validate_files('files')
 	end
 
+  # Keep this.  Not used now.  Might be needed in the future.
 	def find_file_path(filename)
     filepath = Dir.glob(Zizia.config.import_path + "/**/#{filename}").first
 	end
@@ -49,10 +66,16 @@ class Zizia::CsvManifestValidator
 			next unless row[column_number]
 
 			values = row[column_number].split(delimiter)
-			invalid_values = values.select { |value| find_file_path(value).nil? }
-
+			#invalid_values = values.select { |value| find_file_path(value).nil? }
+			invalid_values = values.select { |value|
+			  found = false
+			  @selected_files.each { |name, fileobj|
+			    found = true if fileobj['file_name'].eql?(value)
+			  }
+			  !found
+			}
 			invalid_values.each do |value|
-				@errors << "Invalid #{header_name.titleize} in row #{i + 1}: #{value}"
+				@errors << "Invalid '#{header_name.titleize}' column in row #{i + 1}: #{value} not uploaded?"
 			end
 		end
 	end
@@ -61,9 +84,6 @@ class Zizia::CsvManifestValidator
 	def validate
 		parse_csv
 		return unless @rows
-puts "RRRRR SKV - inspect BEGIN"
-puts @rows.inspect
-puts "RRRRR SKV - inspect END"
 
 		missing_headers
 		duplicate_headers
@@ -72,7 +92,7 @@ puts "RRRRR SKV - inspect END"
 		invalid_license
 		invalid_resource_type
 		invalid_rights_statement
-		# missing_files
+		missing_files
 	end
 
 end
