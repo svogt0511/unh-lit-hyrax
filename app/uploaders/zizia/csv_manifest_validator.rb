@@ -34,6 +34,15 @@ class Zizia::CsvManifestValidator
 		 'alternative']
 	end
 
+	def parse_csv
+    # Remove BOM chars (excel), skip blank lines, skip lines with all blank fields.
+		@rows = CSV.parse(File.read(csv_file.path).sub("\xEF\xBB\xBF", ''), skip_blanks: true, skip_lines: /^(?:\s*,\s*)+$/)
+		@headers = @rows.first || []
+		@transformed_headers = @headers.map { |header| header.downcase.strip }
+	rescue
+		@errors << 'We are unable to read this CSV file.'
+	end
+
 	def required_headers
 		#['title', 'creator', 'keyword', 'rights', 'visibility', 'deduplication key', 'files']
 		['title', 'creator', 'rights', 'visibility', 'deduplication key', 'files']
