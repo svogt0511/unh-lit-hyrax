@@ -3,8 +3,6 @@
 
 function prepZizia(event) {
 
-  console.log("PREPPING ZIZIA JAVASCRIPT EVENTS!! - BEGIN");
-
   // observer for cloud files being added
   var form = document.getElementById('zizia-csv-imports-new');
   //if (form == null) {
@@ -12,7 +10,6 @@ function prepZizia(event) {
   //}
   // only setup the observer on the new and edit importer pages
   if (form != null) {
-      console.log("PREPPING ZIZIA JAVASCRIPT EVENTS!! - FORM");
 
     var config = { childList: true, attributes: true };
     var callback = function(mutationsList) {
@@ -32,11 +29,8 @@ function prepZizia(event) {
           }
 
           my_json =  JSON.stringify( $("[name='selected_files']") );
-          console.log ('AAAAA start');
-          // console.log (my_json);
           var values = $("input[name='selected_files']").map(function(){return $(this).val();});
-          console.log ( values );
-           console.log ('AAAAA middle');
+
 					//var data = JSON.stringify( $(form).serializeArray() );
 /*
 					var myForm = $("form#zizia-csv-imports-new");
@@ -83,9 +77,7 @@ function prepZizia(event) {
 
   				var myForm = $("form#zizia-csv-imports-new");
 					var myValues = $("[name^='selected_files']").not("[name='selected_files[]']").serializeArray();
-console.log (myValues);
 					var myFiles = JSON.stringify( myValues )
-console.log  (myFiles);
 
 					var i = 0;
 					var loop = true;
@@ -106,22 +98,23 @@ console.log  (myFiles);
 
 					   i++;
 					}
-console.log (myFiles);
-          console.log ('AAAAA end');
-console.log(JSON.stringify( myFiles ));
 
-          $.ajax({
-    				url: "/csv_imports/be_upload",
-    				type: 'post',
-    				dataType: 'json',
-            data: { "cloud_files" : JSON.stringify( myFiles ) },
-            //data: $("[name='selected_files']").stringify(),
-    				success: function(resp) {
-    				  console.log(resp);
-    				}
-  				});
+					var provider = $( "#provider-select option:selected" ).text().trim();
 
-  				console.log("PREPPING ZIZIA JAVASCRIPT EVENTS!! - AFTER BE_UPLOAD");
+					if (provider !== "Dropbox") {
+
+										$.ajax({
+											url: "/csv_imports/be_upload",
+											type: 'post',
+											dataType: 'json',
+											data: { "cloud_files" : JSON.stringify( myFiles ) },
+											//data: $("[name='selected_files']").stringify(),
+											success: function(resp) {
+												console.log(resp);
+											}
+										});
+
+					}
         }
       }
 
@@ -131,8 +124,6 @@ console.log(JSON.stringify( myFiles ));
 
 
   }
-
-  console.log("PREPPING ZIZIA JAVASCRIPT EVENTS!! - END");
 
 }
 
