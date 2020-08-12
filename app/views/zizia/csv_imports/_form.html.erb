@@ -88,11 +88,20 @@
         </div>
         <div class="col-md-4">
           <h3><span class="bullet">3</span> Monitor Your Progress</h3>
-          <div class="well well-sm">
+            <div class="well well-sm">
             <h4><span class="bullet" style="margin-top: 5px;">A</span></h4>
 
-            <h4>Check Import Status</h4>
-            <p>Checks the status of all batches that have been submitted for import.</p>
+            <h4>Sidekiq Job Status</h4>
+            <p>Sidekiq checks the status of all jobs that have been submitted for import.</p>
+            <div class="text-center">
+              <a href="/sidekiq/busy" target="_blank" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-list"></i>&nbsp;Sidekiq Jobs</a>
+            </div>
+          </div>
+          <div class="well well-sm">
+            <h4><span class="bullet" style="margin-top: 5px;">B</span></h4>
+
+            <h4>Check History</h4>
+            <p>Checks the history of all batches that have been submitted for import.</p>
             <div class="text-center">
               <a href="/csv_import_details/index" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-list"></i> Import History</a>
             </div>
