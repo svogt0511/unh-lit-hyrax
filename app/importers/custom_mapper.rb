@@ -43,7 +43,7 @@ class CustomMapper < Zizia::HashMapper
       source: 'source',
       spatial: 'spatial',
       subject: 'subject',
-      # temporal: 'temporal',
+      temporal: 'temporal',
       title: 'title',
       visibility: 'visibility',
     }.freeze
@@ -150,7 +150,8 @@ class CustomMapper < Zizia::HashMapper
       def matching_header(field_name)
         metadata.keys.find do |key|
           next unless key
-          key.downcase.strip == field_name
+          #key.downcase.strip == field_name
+          key.downcase.strip.remove(/^dcterms:/) == field_name
         end
       end
 
@@ -172,8 +173,7 @@ class CustomMapper < Zizia::HashMapper
         [:alt_title, :based_near, :bibliographic_citation, :contributor, :creator, :date_created,
          :description, :extent, :identifier, :keyword, :language, :license, :publisher,
          :related_url, :resource_type, :rights_statement,
-         #:source, :spatial, :subject, :temporal]
-         :source, :spatial, :subject]
+         :source, :spatial, :subject, :temporal]
       end
 =begin
       def basic_fields
